@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb { background: #c7c7cc; border-radius: 10px; }
+::selection { background: #0071e322; color: #0071e3; }
+
+.apple-card {
+  background: #fff;
+  border-radius: 18px;
+  border: 0.5px solid rgba(0,0,0,0.08);
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.04),
+    0 4px 12px rgba(0,0,0,0.04),
+    0 0 0 0.5px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.apple-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(0,113,227,0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.apple-card:hover::before { opacity: 1; }
+
+.apple-card:hover {
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.06),
+    0 8px 24px rgba(0,0,0,0.08),
+    0 0 0 0.5px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+.apple-card > * { position: relative; z-index: 1; }
+
+.apple-input {
+  width: 100%;
+  background: #f5f5f7;
+  border: 0.5px solid rgba(0,0,0,0.12);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1d1d1f;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  -webkit-appearance: none;
+}
+.apple-input:focus {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
+  background: #fff;
+}
+.apple-input::placeholder { color: #aeaeb2; }
+
+.apple-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 980px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+  outline: none;
+  letter-spacing: -0.01em;
+}
+.apple-btn-ghost {
+  background: rgba(0,0,0,0.05);
+  color: #1d1d1f;
+}
+.apple-btn-ghost:hover { background: rgba(0,0,0,0.09); }
+
+.apple-btn-primary {
+  background: #0071e3;
+  color: #fff;
+}
+.apple-btn-primary:hover { background: #0056b3; }
+
+.apple-btn-danger {
+  background: rgba(255,59,48,0.08);
+  color: #ff3b30;
+}
+.apple-btn-danger:hover { background: rgba(255,59,48,0.14); }
+
+.apple-divider {
+  border: none;
+  border-top: 0.5px solid rgba(0,0,0,0.08);
+  margin: 16px ;
+}
+
+.apple-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 980px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
