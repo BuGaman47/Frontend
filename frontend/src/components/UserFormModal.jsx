@@ -195,10 +195,10 @@ export default function UserFormModal({ id = 'user-modal', editUser, onSuccess }
             <input
               type="number"
               min={1}
-              max={120}
+              max={100}
               className={`input input-bordered input-sm ${errors.age ? 'input-error' : ''}`}
               value={form.age}
-              onChange={(e) => setF('age', e.target.value)}
+              onChange={(e) => setF('age', e.target.value)} 
             />
           </Field>
 
@@ -343,3 +343,29 @@ export default function UserFormModal({ id = 'user-modal', editUser, onSuccess }
     </dialog>
   )
 }
+
+/*
+คอมโพเนนต์นี้คือ Modal Form สำหรับ "เพิ่ม" หรือ "แก้ไข" ข้อมูลผู้ใช้งาน
+
+1.  **โหมดการทำงาน (Create/Edit):**
+    -   หาก `editUser` (prop) มีค่า จะอยู่ในโหมด "แก้ไข" โดยจะดึงข้อมูล `editUser` มากรอกในฟอร์ม
+    -   หาก `editUser` เป็น `null` จะอยู่ในโหมด "เพิ่มผู้ใช้ใหม่" โดยฟอร์มจะว่างเปล่า
+
+2.  **State Management:**
+    -   ใช้ `useState` เพื่อเก็บข้อมูลฟอร์ม (`form`), ข้อมูลที่อยู่ (`address`), สถานะการเปิด/ปิดที่อยู่ (`addressEnabled`), ข้อผิดพลาดจากการตรวจสอบ (`errors`), ข้อผิดพลาดจากเซิร์ฟเวอร์ (`serverError`), และสถานะการโหลด (`loading`)
+    -   `useEffect` ใช้สำหรับรีเซ็ตฟอร์มและเติมข้อมูลเมื่อ `editUser` เปลี่ยนแปลง
+
+3.  **การตรวจสอบข้อมูล (Validation):**
+    -   ฟังก์ชัน `validateForm` ทำการตรวจสอบข้อมูลที่กรอกในฟอร์มฝั่ง Client-side ตามกฎที่กำหนดไว้ (เช่น ความยาวชื่อ, รูปแบบอีเมล, อายุ, รหัสไปรษณีย์)
+    -   หากมีข้อผิดพลาด จะแสดงข้อความแจ้งเตือนใต้ช่องกรอกข้อมูล
+
+4.  **การส่งข้อมูล (Submission):**
+    -   เมื่อกดปุ่ม "บันทึก" หรือ "เพิ่มผู้ใช้" จะเรียก `handleSubmit`
+    -   `handleSubmit` จะตรวจสอบข้อมูลอีกครั้ง หากผ่านจะเรียก `userService.create` หรือ `userService.update` ตามโหมดการทำงาน
+    -   เมื่อสำเร็จ จะปิด Modal และเรียก `onSuccess` prop เพื่อให้ Component แม่ทำการ Refresh ข้อมูล
+    -   หากเกิดข้อผิดพลาดจาก API จะแสดง `serverError` หรือข้อผิดพลาดเฉพาะฟิลด์
+
+5.  **การจัดการที่อยู่ (Address Toggle):**
+    -   มี Checkbox "📍 ที่อยู่" สำหรับเปิด/ปิดส่วนกรอกข้อมูลที่อยู่
+    -   หากปิดอยู่ ข้อมูลที่อยู่จะไม่ถูกส่งไปยัง Backend
+*/
