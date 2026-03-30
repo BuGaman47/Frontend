@@ -12,7 +12,7 @@ const getUsers = async (req, res) => {
     const gender        = req.query.gender        || '';
     const department_id = req.query.department_id || '';
 
-    const allowedSort  = ['u.first_name','u.last_name','u.age','u.created_at','d.name'];
+   const allowedSort = ['u.id', 'u.first_name', 'u.last_name', 'u.age', 'u.created_at', 'd.name']
     const allowedOrder = ['asc','desc'];
     const sortRaw = req.query.sort || 'u.created_at';
     const sort  = allowedSort.includes(sortRaw) ? sortRaw : 'u.created_at';

@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+import { create } from 'zustand' //ที่เก็บข้อมูลกลาง
 import { departmentService } from '../services/departmentService'
 
 export const useDepartmentStore = create((set, get) => ({

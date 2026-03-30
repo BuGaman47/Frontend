@@ -15,8 +15,8 @@ export function useUsers() {
   const search        = searchParams.get('search')        || ''
   const gender        = searchParams.get('gender')        || ''
   const department_id = searchParams.get('department_id') || ''
-  const sort          = searchParams.get('sort')          || 'u.created_at'
-  const order         = searchParams.get('order')         || 'desc'
+  const sort          = searchParams.get('sort')          || 'u.id'
+  const order         = searchParams.get('order')         || 'asc'
 
   // ── fetch ─────────────────────────────────────────────────────
   const fetchUsers = useCallback(async (params) => {

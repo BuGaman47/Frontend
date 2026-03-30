@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react'
 import { useDepartmentStore } from '../store/departmentStore'
 
 const SORT_OPTIONS = [
+  { value: 'u.id',         label: 'ID' },
   { value: 'u.created_at', label: 'วันที่สร้าง' },
   { value: 'u.first_name', label: 'ชื่อ' },
   { value: 'u.last_name',  label: 'นามสกุล' },
@@ -42,7 +43,7 @@ export default function SearchFilterBar({ params, onSearch, onGender, onDepartme
       />
       {[
         { val: params.gender, fn: onGender, opts: [['','เพศทั้งหมด '],['male','ชาย'],['female','หญิง'],['unspecified','ไม่ระบุ']] },
-        { val: params.department_id, fn: onDepartment, opts: [['','แผนกทั้งหมด'],['null', 'ไม่มีแผนก'], ...departments.map(d=>[d.id,d.name])] },
+       { val: params.department_id, fn: onDepartment, opts: [['','แผนกทั้งหมด'],['null','ไม่มีแผนก'], ...departments.filter(d=>d.id!=='null').map(d=>[d.id,d.name])] },
         { val: params.sort, fn: onSort, opts: SORT_OPTIONS.map(o=>[o.value,o.label]) },
         { val: params.order, fn: onOrder, opts: [['asc','น้อย → มาก'],['desc','มาก → น้อย']] },
       ].map((s, i) => (
