@@ -84,12 +84,14 @@ export default function UsersPage() {
       </div>
 
         <SearchFilterBar
-          params={params}
-          onSearch={setSearchDebounced}
-          onSort={setSort}
-          onOrder={setOrder}
-          totalItems={pagination?.totalItems}
-        />
+  params={params}
+  onSearch={setSearchDebounced}
+  onGender={setGender}
+  onDepartment={setDepartmentId}
+  onSort={setSort}
+  onOrder={setOrder}
+  totalItems={pagination?.totalItems}
+/>
 
         {loading ? (
           <LoadingSpinner />
@@ -119,3 +121,20 @@ export default function UsersPage() {
     </div>
   )
 }
+
+/*
+หน้านี้คือ "หน้าแสดงรายการผู้ใช้งานทั้งหมด"
+
+1.  **การดึงและแสดงข้อมูลผู้ใช้:**
+    -   ใช้ `useUsers` custom hook ในการจัดการสถานะและเรียกข้อมูลผู้ใช้จาก API รวมถึงการค้นหา, กรอง, จัดเรียง, และการแบ่งหน้า (pagination)
+    -   แสดงผลข้อมูลผู้ใช้ด้วยคอมโพเนนต์ `<UserTable />`
+    -   แสดงสถานะการโหลดด้วย `<LoadingSpinner />` และข้อผิดพลาดหากมี
+
+2.  **ฟังก์ชันการค้นหาและกรอง:**
+    -   `<SearchFilterBar />` ให้ผู้ใช้สามารถค้นหา, กรองตามเพศและแผนก, และจัดเรียงข้อมูลได้
+
+3.  **การจัดการผู้ใช้ (CRUD Operations):**
+    -   มีปุ่ม "เพิ่มผู้ใช้" เพื่อเปิด `<UserFormModal />` สำหรับสร้างผู้ใช้ใหม่
+    -   ใน `<UserTable />` แต่ละรายการผู้ใช้มีปุ่ม "แก้ไข" และ "ลบ" ซึ่งจะเปิด `<UserFormModal />` (สำหรับแก้ไข) หรือ `<ConfirmDialog />` (สำหรับลบ) ตามลำดับ
+    -   เมื่อดำเนินการสำเร็จ (เพิ่ม/แก้ไข/ลบ) จะมีการแสดง `<Toast />` แจ้งเตือน
+*/

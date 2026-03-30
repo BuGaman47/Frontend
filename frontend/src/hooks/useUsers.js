@@ -11,12 +11,12 @@ export function useUsers() {
   const debounceRef = useRef(null)
 
   // ── read from URL ─────────────────────────────────────────────
-  const page          = parseInt(searchParams.get('page')          || '1')
-  const search        = searchParams.get('search')        || ''
-  const gender        = searchParams.get('gender')        || ''
+  const page = parseInt(searchParams.get('page') || '1')
+  const search = searchParams.get('search') || ''
+  const gender = searchParams.get('gender') || ''
   const department_id = searchParams.get('department_id') || ''
-  const sort          = searchParams.get('sort')          || 'u.id'
-  const order         = searchParams.get('order')         || 'asc'
+  const sort = searchParams.get('sort') || 'u.id'
+  const order = searchParams.get('order') || 'asc'
 
   // ── fetch ─────────────────────────────────────────────────────
   const fetchUsers = useCallback(async (params) => {
@@ -25,12 +25,12 @@ export function useUsers() {
     try {
       // strip empty values so backend doesn't get empty strings
       const clean = { limit: 10 }
-      if (params.page)          clean.page          = params.page
-      if (params.search)        clean.search        = params.search
-      if (params.gender)        clean.gender        = params.gender
+      if (params.page) clean.page = params.page
+      if (params.search) clean.search = params.search
+      if (params.gender) clean.gender = params.gender
       if (params.department_id) clean.department_id = params.department_id
-      if (params.sort)          clean.sort          = params.sort
-      if (params.order)         clean.order         = params.order
+      if (params.sort) clean.sort = params.sort
+      if (params.order) clean.order = params.order
 
       const res = await userService.getAll(clean)
       setUsers(res.data.data.users)
@@ -51,7 +51,7 @@ export function useUsers() {
     setSearchParams(prev => {
       const next = new URLSearchParams(prev)
       if (value) next.set(key, value)
-      else       next.delete(key)
+      else next.delete(key)
       if (resetPage) next.set('page', '1')
       return next
     })
@@ -66,11 +66,11 @@ export function useUsers() {
     users, pagination, loading, error,
     params: { page, search, gender, department_id, sort, order },
     setSearchDebounced,
-    setPage:         (p) => updateParam('page',          p,     false),
-    setGender:       (v) => updateParam('gender',        v),
+    setPage: (p) => updateParam('page', p, false),
+    setGender: (v) => updateParam('gender', v),
     setDepartmentId: (v) => updateParam('department_id', v),
-    setSort:         (v) => updateParam('sort',          v),
-    setOrder:        (v) => updateParam('order',         v),
+    setSort: (v) => updateParam('sort', v),
+    setOrder: (v) => updateParam('order', v),
     refresh: () => fetchUsers({ page, search, gender, department_id, sort, order }),
   }
 }

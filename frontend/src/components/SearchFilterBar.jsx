@@ -42,8 +42,8 @@ export default function SearchFilterBar({ params, onSearch, onGender, onDepartme
         onChange={(e) => onSearch(e.target.value)}
       />
       {[
-        { val: params.gender, fn: onGender, opts: [['','เพศทั้งหมด '],['male','ชาย'],['female','หญิง'],['unspecified','ไม่ระบุ']] },
-       { val: params.department_id, fn: onDepartment, opts: [['','แผนกทั้งหมด'],['null','ไม่มีแผนก'], ...departments.filter(d=>d.id!=='null').map(d=>[d.id,d.name])] },
+        { val: params.gender, fn: onGender, opts: [['','เพศทั้งหมด'],['male','ชาย'],['female','หญิง'],['unspecified','ไม่ระบุ']] },
+        { val: params.department_id, fn: onDepartment, opts: [['','แผนกทั้งหมด'],['null','ไม่มีแผนก'], ...departments.filter(d=>d.id!=='null').map(d=>[d.id,d.name])] },
         { val: params.sort, fn: onSort, opts: SORT_OPTIONS.map(o=>[o.value,o.label]) },
         { val: params.order, fn: onOrder, opts: [['asc','น้อย → มาก'],['desc','มาก → น้อย']] },
       ].map((s, i) => (
