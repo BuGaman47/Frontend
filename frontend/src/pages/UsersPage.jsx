@@ -52,17 +52,36 @@ export default function UsersPage() {
   }
 
   return (
-    <div style={{ display:'flex', height:'100%', overflow:'hidden' }}>
-      {/* <Sidebar params={params} onGender={setGender} onDepartment={setDepartmentId} /> */}
-      <main style={{ flex:1, overflowY:'auto', padding:'24px' }}>
-        <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'16px' }}>
-          <h1 style={{ fontSize:'16px', fontWeight:600, color:'var(--txt)', letterSpacing:'-0.02em' }}>
-            รายการผู้ใช้
-          </h1>
-          <button className="cd-btn cd-btn-primary" style={{ fontSize:'12px', padding:'5px 14px' }} onClick={openCreate}>
+    <div>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
+        <h1 style={{ fontSize: '28px', fontWeight: 700, color: '#1d1d1f', letterSpacing: '-0.02em' }}>
+          รายการผู้ใช้
+        </h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {pagination && (
+            <div style={{
+              background: '#fff',
+              borderRadius: '14px',
+              border: '0.5px solid rgba(0,0,0,0.08)',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04)',
+              padding: '10px 18px',
+              textAlign: 'center',
+              minWidth: '100px',
+            }}>
+              <div style={{ fontSize: '11px', color: '#aeaeb2', letterSpacing: '0.04em', marginBottom: '2px' }}>
+                ผู้ใช้ทั้งหมด
+              </div>
+              <div style={{ fontSize: '22px', fontWeight: 700, color: '#1d1d1f', letterSpacing: '-0.02em', lineHeight: 1 }}>
+                {pagination.totalItems} <span style={{ fontSize: '13px', fontWeight: 400, color: '#aeaeb2' }}>คน</span>
+              </div>
+            </div>
+          )}
+          <button className="apple-btn apple-btn-primary" onClick={openCreate}>
             + เพิ่มผู้ใช้
           </button>
         </div>
+      </div>
 
         <SearchFilterBar
           params={params}
@@ -85,7 +104,7 @@ export default function UsersPage() {
             <Pagination pagination={pagination} onPageChange={setPage} />
           </div>
         )}
-      </main>
+      
 
       <UserFormModal id="user-modal" editUser={editUser} onSuccess={handleSuccess} />
       <ConfirmDialog

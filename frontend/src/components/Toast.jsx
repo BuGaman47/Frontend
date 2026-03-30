@@ -16,8 +16,8 @@ export default function Toast({ message, type = 'success', onClose }) {
     <div style={{
       position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999,
       background: c.bg, border: `1px solid ${c.border}`, borderRadius: '8px',
-      padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '8px',
-      fontSize: '13px', color: c.color, fontWeight: 500,
+      padding: '20px 24px', display: 'flex', alignItems: 'center', gap: '8px',
+      fontSize: '16px', color: c.color, fontWeight: 500,
       boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
       animation: 'fadeIn 0.18s ease',
     }}>
