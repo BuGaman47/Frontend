@@ -28,7 +28,7 @@ export default function UsersPage() {
   const showToast = (message, type = 'success') => setToast({ message, type })
   const hideToast = useCallback(() => setToast(null), [])
 
-  const openCreate = () => { setEditUser(null); document.getElementById('user-modal')?.showModal() }
+  const openCreate = () => { setEditUser(null); document.getElementById('user-modal')?.showModal() } 
   const openEdit   = (u)  => { setEditUser(u);   document.getElementById('user-modal')?.showModal() }
   const openDelete = (u)  => { setDeleteTarget(u); document.getElementById('confirm-dialog')?.showModal() }
 
@@ -123,7 +123,7 @@ export default function UsersPage() {
 }
 
 /*
-หน้านี้คือ "หน้าแสดงรายการผู้ใช้งานทั้งหมด"
+หน้าแสดงรายการผู้ใช้งานทั้งหมด
 
 1.  **การดึงและแสดงข้อมูลผู้ใช้:**
     -   ใช้ `useUsers` custom hook ในการจัดการสถานะและเรียกข้อมูลผู้ใช้จาก API รวมถึงการค้นหา, กรอง, จัดเรียง, และการแบ่งหน้า (pagination)

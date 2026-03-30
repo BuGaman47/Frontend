@@ -7,6 +7,7 @@ import UserDetail from '../components/UserDetail'
 import UserFormModal from '../components/UserFormModal'
 import ConfirmDialog from '../components/ConfirmDialog'
 import LoadingSpinner from '../components/LoadingSpinner'
+import Toast from '../components/Toast'
 
 export default function UserDetailPage() {
   const { id } = useParams()
@@ -14,8 +15,12 @@ export default function UserDetailPage() {
   const { user, loading, error } = useUser(id)
   const { fetchDepartments } = useDepartmentStore()
   const [deleteLoading, setDeleteLoading] = useState(false)
+  const [toast, setToast] = useState(null)
 
   useEffect(() => { fetchDepartments() }, [fetchDepartments])
+
+  const showToast = (message, type = 'success') => setToast({ message, type })
+  const hideToast = () => setToast(null)
 
   const handleDelete = async () => {
     setDeleteLoading(true)
@@ -42,8 +47,11 @@ export default function UserDetailPage() {
             <button className="ap-btn danger" onClick={() => document.getElementById('detail-confirm-dialog')?.showModal()}>
               ลบ
             </button>
+
           </div>
+
         )}
+
       </div>
 
       {loading ? <LoadingSpinner /> : error ? (
@@ -54,7 +62,10 @@ export default function UserDetailPage() {
 
       {user && (
         <>
-          <UserFormModal id="detail-user-modal" editUser={user} onSuccess={() => window.location.reload()} />
+          <UserFormModal id="detail-user-modal" editUser={user} onSuccess={() => {
+            showToast(`แก้ไข "${user.first_name} ${user.last_name}" สำเร็จ`)
+            setTimeout(() => window.location.reload(), 1000)
+          }} />
           <ConfirmDialog
             id="detail-confirm-dialog"
             title="ยืนยันการลบ"
@@ -62,8 +73,10 @@ export default function UserDetailPage() {
             onConfirm={handleDelete}
             loading={deleteLoading}
           />
+
         </>
       )}
+      {toast && <Toast message={toast.message} type={toast.type} onClose={hideToast} />}
     </div>
   )
 }

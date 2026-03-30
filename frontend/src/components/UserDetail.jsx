@@ -22,7 +22,7 @@ export default function UserDetail({ user }) {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', marginBottom: '28px' }}>
         <div>
           <p style={{ fontSize: '11px', color: '#aeaeb2', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '16px' }}>ข้อมูลส่วนตัว</p>
-          {[['อายุ', `${user.age} ปี`], ['อีเมล', user.email], ['เบอร์โทร', user.phone||'—'], ['แผนก', user.department?.name||'—']].map(([l,v]) => (
+          {[['อายุ', `${user.age} ปี`], ['อีเมล', user.email], ['เบอร์โทร', user.phone || '—'], ['แผนก', user.department?.name || '—']].map(([l, v]) => (
             <div key={l} style={{ display: 'flex', gap: '16px', marginBottom: '12px' }}>
               <span style={{ fontSize: '14px', color: '#aeaeb2', width: '68px', flexShrink: 0 }}>{l}</span>
               <span style={{ fontSize: '14px', color: '#1d1d1f' }}>{v}</span>

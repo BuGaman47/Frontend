@@ -1,4 +1,4 @@
-const pool = require('../db');
+const pool = require('../db'); //connection pool คือการเชื่อมต่อฐานข้อมูลที่ถูกสร้างไว้ในไฟล์ db.js
 
 const getDepartments = async (req, res) => {
   try {
